@@ -20,16 +20,16 @@ DEPEND=""
 S=${WORKDIR}/dnsexit
 
 DOC_CONTENTS="
-	Configuration can be done manually via ${EROOT}/usr/sbin/dnsexit-setup or
+	Configuration can be done manually via ${EROOT}usr/sbin/dnsexit-setup or
 	by using this ebuild's config option."
 
 src_prepare() {
-	sed -i -e "s:/etc/dnsexit.conf:${EROOT}/etc/dnsexit.conf:g" ipUpdate.pl || die "sed failed"
-	sed -i -e "s:/etc/dnsexit.conf:${EROOT}/etc/dnsexit.conf:g" setup.pl || die "sed failed"
+	sed -i -e "s:/etc/dnsexit.conf:${EROOT}etc/dnsexit.conf:g" ipUpdate.pl || die "sed failed"
+	sed -i -e "s:/etc/dnsexit.conf:${EROOT}etc/dnsexit.conf:g" setup.pl || die "sed failed"
 }
 
 src_install() {
-	LIBEXECDIR="${EROOT}"/usr/libexec/dnsexit-ipUpdate
+	LIBEXECDIR="${EROOT}"usr/libexec/dnsexit-ipUpdate
 	sed -e "s:LIBEXECDIR:${LIBEXECDIR}:g" "${FILESDIR}"/dnsexit-setup > "${T}"/dnsexit-setup || die "sed failed"
 	sed -e "s:LIBEXECDIR:${LIBEXECDIR}:g" "${FILESDIR}"/dnsexit-ipUpdate > "${T}"/dnsexit-ipUpdate || die "sed failed"
 	sed -e "s:EROOT:${EROOT}:g" "${FILESDIR}"/dnsexit-ipUpdate.service > "${T}"/dnsexit-ipUpdate.service || die "sed failed"

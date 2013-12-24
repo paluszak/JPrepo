@@ -1,6 +1,6 @@
 #!/sbin/runscript
 
-PIDFILE="/var/run/ipUpdate.pid"
+PIDFILE=`grep pidfile EROOTetc/dnsexit.conf | sed -e 's:pidfile=::'`
 
 depend() {
 	need localmount
@@ -9,7 +9,7 @@ depend() {
 }
 
 checkconfig() {
-	if [ ! -f EROOT/etc/dnsexit.conf ]
+	if [ ! -f EROOTetc/dnsexit.conf ]
 	then
 		einfo "Answer the following questions about your dnsexit account."
 		dnsexit-setup || return 1
@@ -20,7 +20,7 @@ checkconfig() {
 start() {
 	checkconfig || return 1
 	ebegin "Starting dnsexit-ipUpdate"
-	start-stop-daemon --quiet --start --pidfile "${PIDFILE}" -x EROOT/usr/sbin/dnsexit-ipUpdate
+	start-stop-daemon --quiet --start --pidfile "${PIDFILE}" -x EROOTusr/sbin/dnsexit-ipUpdate
 	eend $? "dnsexit-ipUpdate did not start, error code $?"
 }
 
