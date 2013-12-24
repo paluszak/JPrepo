@@ -1,2 +1,2 @@
 #!/bin/sh
-perl -l LIBEXECDIR LIBEXECDIR/setup.pl "$@"
+PERL5LIB=LIBEXECDIR LIBEXECDIR/setup.pl "$@"
