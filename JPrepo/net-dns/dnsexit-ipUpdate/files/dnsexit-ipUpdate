@@ -1,0 +1,2 @@
+#!/bin/sh
+perl -l LIBEXECDIR LIBEXECDIR/ipUpdate.pl "$@"

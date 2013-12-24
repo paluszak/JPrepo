@@ -1,0 +1,11 @@
+[Unit]
+Description=dnsexit Dynamic DNS Update Client
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=EROOT/usr/sbin/dnsexit-ipUpdate
+
+[Install]
+WantedBy=multi-user.target
+ 
